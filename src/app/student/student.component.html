@@ -1,0 +1,135 @@
+<p>student works!</p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="text-center color-red font-weight-bold" >
+        <h2>DANH SÁCH USER</h2>
+        
+    </div>
+    <!--Sử dụng cặp ngoặc nhọn {{ten_bien_da_dinh_nghia_ben_trong}}-->
+        <!-- <p>{{title}}</p>
+        <p>{{subTitle}}</p> -->
+    <div class="form-group container">
+        <label for="searchInput">Search</label>
+        <input 
+            type="text" 
+            id="searchInput"
+            class="form-control" 
+            (input)="onSearch($event)"
+        >
+
+        <p>{{searchValue}}</p>
+    </div>
+
+
+    <div class="container">
+        <h3>Add new user</h3>
+        <form action="">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input id="name" type="text" class="form-control" 
+                (input)="onChangeInput($event, 'name')"
+                [value]="newUser.name"
+                >
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input id="age" type="number" class="form-control" 
+                (input)="onChangeInput($event, 'age')"
+                [value]="newUser.age"
+                >
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input id="phone" type="number" class="form-control" 
+                (input)="onChangeInput($event, 'phone')"
+                [value]="newUser.phone"
+                >
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="text" class="form-control" 
+                (input)="onChangeInput($event, 'email')"
+                [value]="newUser.email"
+                >
+            </div>
+            <div class="form-group">
+                <label for="img">Avartar</label>
+                <input id="img" type="text" class="form-control" 
+                (input)="onChangeInput($event, 'img')"
+                [value]="newUser.img"
+                >
+            </div>
+           <div class="form-group">
+                <button type="button" class="btn btn-primary" [disabled]="!onValidate(newUser)" (click)="onSubmit()">Submit</button>
+                
+           </div>
+           <!--Nếu thẻ button đặt type là submit hoặc ko có type thì sẽ bị reload lại luôn -->
+        </form>
+    </div>
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Avartar</th>
+                <th>Action</th>
+            </thead>
+            <tbody *ngIf="students.length > 0">
+
+               <tr *ngFor="let student of filterStudents">
+                    <td>{{student.id}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.age}}</td>
+                    <td>{{student.phone}}</td>
+                    <td>{{student.email}}</td>
+                    <td><img [src]="student.img" width="100px" height="70px"></td>
+                    <td>
+                        <button (click)="remove(student.id)"class="btn btn-danger">Delete</button>
+
+                         <button (click)="onEdit(student)" class="btn btn-success">Update</button>
+                    </td>
+               </tr>
+            </tbody>
+        </table>
+
+
+        <!-- <table class="table table-hover">
+            <thead>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Cân nặng</th>
+                <th>Chiều cao</th>
+                <th>Avartar</th>
+                <th>Hành động</th>
+            </thead>
+            <tbody *ngIf="user.length > 0">
+
+               <tr *ngFor="let us of user">
+                    <td>{{us.id}}</td>
+                    <td>{{us.ten}}</td>
+                    <td>{{us.weight}}</td>
+                    <td>{{us.height}}</td>
+                    <td><img [src]="us.img" width="100px" height="70px"></td>
+                    <td><button
+                        (click)="remove(us.id)" 
+                        class="btn btn-danger">Delete</button></td>
+               </tr>
+            </tbody>
+        </table> -->
+       
+    </div>
+
+    
+    
+</body>
+
+</html>
