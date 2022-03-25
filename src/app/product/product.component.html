@@ -3,7 +3,7 @@
 
     <!-- <p>{{newProduct | json }}</p> -->
     <div class="row">
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <form #productForm="ngForm" class="form" (submit)="onSubmit(productForm.value)">
                 <div class="form-group">
                     <label for="" class="form-label">Name</label>
@@ -27,12 +27,15 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
+        </div> -->
+        <div class="">
+            <a routerLink="/product/create"><button class="btn btn-primary">Tạo mới</button></a>
         </div>
-
         <div class="">
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Price</th>
                         <th>Description</th>
@@ -40,16 +43,26 @@
                     </tr>
                 </thead>
                 <tbody >
-                    <tr *ngFor="let pro of ListProduct">
-                        <td>{{pro.name}}</td>
-                        <td>{{pro.price}}</td>
-                        <td>{{pro.desc}}</td>
+                    <tr *ngFor="let product of products">
+                        <td>{{product.id}}</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.desc}}</td>
                         
-                        <td>
+                        <!-- <td>
                             <button (click)="remove(pro.id)" class="btn btn-danger">Delete</button>
                             <button (click)="onEdit(pro)" class="btn btn-success">Edit</button>
+                        </td> -->
+                        <td>
+                            <a [routerLink]="['/product', product.id]">
+                                <button class="btn btn-primary">Xem chi tiết</button>
+                            </a>
+                            <a [routerLink]="['/product', product.id, 'edit']">
+                                <button class="btn btn-success">Chỉnh sửa</button>
+                            </a>
+                            
+                            <button (click)="onDelete(product.id)" class="btn btn-danger">Xóa</button>
                         </td>
-                        
                     </tr>
                 </tbody>
             </table>
